@@ -8,8 +8,10 @@ package mgn.obj.images;
 
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import mgn.obj.lookup.mgnLookupBean;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
@@ -24,8 +26,62 @@ public class imgObj implements Serializable{
     public static final Logger logger = (Logger) LoggerFactory.getLogger(imgObj.class);
     
    
+    public static List<mgnFileBean> getFileDirList(int id,dbMgrInterface db){
+        return getMgnFileBean(imgSql.sqlSelectFileDirectory,db,new Object[]{id});
+    }
+    private static List<mgnFileBean> getMgnFileBean(String sql,dbMgrInterface db,Object[] obj){
+        List<mgnFileBean> l= new ArrayList<mgnFileBean>();
+         CachedRowSet r = null;
+        try {
+            r = db.getCachedRowSet(sql,obj);
+            while(r.next()){
+                l.add(getMgnFileBean(r));
+            }
+        }catch (Exception ex) {
+            logger.error(ex.toString());
+        } finally {
+            db.closeCachedRowSet(r);
+        }
+        return l;
+    }
+    public static mgnFileBean getMgnFileBean(CachedRowSet r){
+        mgnFileBean b = new mgnFileBean();
+        try {
+            b.setDir_id(r.getInt(1));
+            b.setFile_name(r.getString(2));
+            b.setFile_desc(r.getString(3));
+            b.setFile_text((String)r.getObject(4));
+           
+            b.setDir_group(r.getInt(5));
+            b.setUser_id(r.getInt(6));
+        } catch (SQLException ex) {
+            logger.error(ex.toString());
+        }
+        return b;
+    }
+    /// ======================================================================
     public static List<mgnLookupBean> selectImageBatch(int id,dbMgrInterface db){
-        return selectImageBatch(imgSql.sqlSelectImageBatchList,db, new Object[]{id});
+        List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
+        
+         CachedRowSet r = null;
+        try {
+            r = db.getCachedRowSet(imgSql.sqlGrabFileDescName,new Object[]{id});
+            while(r.next()){
+                mgnLookupBean l = new mgnLookupBean();
+                l.setLookupDesc(r.getString(1));
+                l.setLookupId(r.getInt(2));
+                list.add(l);
+            }
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        } finally {
+            db.closeCachedRowSet(r);
+        }
+        return list;
+        
+        
+        
+        
     }
     public static List<mgnLookupBean> selectImageBatch(String sql,dbMgrInterface db,Object[] obj){
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();

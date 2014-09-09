@@ -1,4 +1,4 @@
-package mgn.obj.lookup;
+package mgn.obj;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

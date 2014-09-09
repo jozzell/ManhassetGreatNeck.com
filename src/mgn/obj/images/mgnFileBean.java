@@ -19,7 +19,7 @@ public class mgnFileBean implements Serializable{
     private String file_desc;
     private String file_text;
     private int file_type;
-    private int dir_id;
+    private int dir_id,dir_group,user_id;
 
     /**
      * @return the file_name
@@ -89,5 +89,33 @@ public class mgnFileBean implements Serializable{
      */
     public void setDir_id(int dir_id) {
         this.dir_id = dir_id;
+    }
+
+    /**
+     * @return the dir_group
+     */
+    public int getDir_group() {
+        return dir_group;
+    }
+
+    /**
+     * @param dir_group the dir_group to set
+     */
+    public void setDir_group(int dir_group) {
+        this.dir_group = dir_group;
+    }
+
+    /**
+     * @return the user_id
+     */
+    public int getUser_id() {
+        return user_id;
+    }
+
+    /**
+     * @param user_id the user_id to set
+     */
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }
