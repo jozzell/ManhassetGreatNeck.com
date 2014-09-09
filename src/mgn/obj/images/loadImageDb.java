@@ -22,9 +22,18 @@ public class loadImageDb implements Serializable{
     public void dirScan(String path,String dir,int dirID){
         //List<String> results = new ArrayList<String>();
         File[] files = new File(path+"/"+dir).listFiles();
-        String sql = "";
+        String str = "";
+        int ptr  =1,cnt=0;
+        str = String.format("%02d", ptr);
         for (File file : files){
-            System.err.println("INSERT INTO mgn_files (file_desc,file_name,file_type,dir_id) VALUES ('"+dir+"','"+file.getName()+"',"+-10+","+dirID+");");
+            cnt++;
+            if (cnt > 20){
+                ptr++;
+                cnt = 0;
+                str = String.format("%02d", ptr);
+            }
+            
+            System.err.println("INSERT INTO mgn_files (file_desc,file_name,file_type,dir_id) VALUES (Page '"+str+"','"+file.getName()+"',"+-10+","+dirID+");");
             
             
             //results.add(file.getName());
@@ -32,25 +41,18 @@ public class loadImageDb implements Serializable{
     }
     public static void main(String args[]){
         loadImageDb loadImageDb = new loadImageDb();
-        for (int i  = 1; i <= 6; i++){
-            loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn/adult_learning_center",
-                "adult_learning_center_0"+i,
-                1);
-        }
-        for (int i  = 1; i <= 4; i++){
-            loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn/learning_center",
-                "learning_center_0"+i,
-                2);
-        }
+        
         loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn/otd",
-                "otd_2k07",
+                "C:/_bisc/_javaApps/jlData/mgn",
+                "adult_learning_center",
+                1);
+        loadImageDb.dirScan(
+                "C:/_bisc/_javaApps/jlData/mgn",
+               "otd2k7",
                 3);
          loadImageDb.dirScan(
                 "C:/_bisc/_javaApps/jlData/mgn",
-                "pond_view_homes_01",
+                "pond_view_homes",
                 4);
     }
 }
