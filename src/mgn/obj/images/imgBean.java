@@ -151,6 +151,6 @@ public class imgBean   implements Serializable{
         this.rootPath = rootPath;
     }
     public String fileDirectory(){
-        return rootPath+"/"+dirName+"/"+fileDesc+"/"+fileName;
+        return rootPath+"/"+dirName+"/"+fileName;
     }
 }
