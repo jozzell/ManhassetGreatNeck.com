@@ -5,6 +5,7 @@
 package mgn.obj._beans;
 
 import java.io.Serializable;
+import mgn.obj.mgnVar;
 
 /**
  *
@@ -31,7 +32,7 @@ public class customerBean implements Serializable{
     private String userName;
     private String userPass;
     private int vendorId;
-    private int accessLevel=-99;
+    private int accessLevel=mgnVar.sysId_User_Pending;
     private int sponsorLinkId;
 
     /**

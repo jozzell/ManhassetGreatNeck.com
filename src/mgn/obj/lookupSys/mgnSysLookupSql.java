@@ -16,5 +16,6 @@ public class mgnSysLookupSql {
             " s.subject_text,s.subject_body "+
             " FROM mgn_lookup_sys s ";
     public static final String 
+            sqlSysLookupAccessLvl = sqlSys+" where s.sys_type = ? and  s.lookup_flag <= ? order by s.lookup_flag",
             sqlSysLookupByType = sqlSys+" where s.sys_type = ? order by upper(s.sys_desc)";
 }

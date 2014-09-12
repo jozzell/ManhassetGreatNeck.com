@@ -24,11 +24,19 @@ import sun.jdbc.rowset.CachedRowSet;
  */
 public class mgnSysLookupObj implements Serializable{
     public static final Logger logger = (Logger) LoggerFactory.getLogger(mgnSysLookupObj.class);
+    
     public static List<mgnLookupBean> getSysLookupList(int type,dbMgrInterface db){
+        return getSysLookupList(mgnSysLookupSql.sqlSysLookupByType,new Object[]{type},db);
+    }
+    public static List<mgnLookupBean> getSysLookupListAccess(int type,int access,dbMgrInterface db){
+        return getSysLookupList(mgnSysLookupSql.sqlSysLookupAccessLvl,new Object[]{type,access},db);
+    }
+    public static List<mgnLookupBean> getSysLookupList(String sql,Object[] obj,dbMgrInterface db){
+        
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
         CachedRowSet r = null;
         try {
-            r = db.getCachedRowSet(mgnSysLookupSql.sqlSysLookupByType, new Object[]{type});
+            r = db.getCachedRowSet(sql, obj);
             while(r.next()){
                 list.add(mgnLookupObj.getlookupBean(r));
             }

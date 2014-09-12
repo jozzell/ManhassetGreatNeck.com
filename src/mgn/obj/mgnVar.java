@@ -12,5 +12,6 @@ package mgn.obj;
  */
 public class mgnVar {
     public static final int
+            sysId_User_Pending = -101,
             sysId_SpinneyHillImageBatch = -10;
 }
