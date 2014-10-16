@@ -40,7 +40,7 @@ public class userObj implements  Serializable{
         userBean b = null;
         CachedRowSet rs = null;
         try {
-            rs = db.getCachedRowSet(userSql.select_login, new Object[]{user.toLowerCase(),pass.toLowerCase()});
+            rs = db.getCachedRowSet(userSql.select_login, new Object[]{user.toLowerCase().trim(),pass.toLowerCase().trim()});
             while(rs.next()){
               b =    getSoulCustomerBean(rs);
             }
@@ -91,8 +91,8 @@ public class userObj implements  Serializable{
     
     
     //select_byDept
-    public static List<userBean> selectByDept(int dept, dbMgrInterface db){
-        return select(userSql.select_byDept,new Object[]{dept},db);
+    public static List<userBean> selectALL(dbMgrInterface db){
+        return select(userSql.select_byALL,new Object[]{},db);
     }
     private static List<userBean> select(String sql, Object[] obj,dbMgrInterface db){
         List<userBean> list = new ArrayList<userBean>();
@@ -155,8 +155,8 @@ public class userObj implements  Serializable{
             b.getWkPhone() == null ? "" : b.getWkPhone(),
             b.getWkExt() == null ? "" : b.getWkExt(),
             b.getZip() == null ? "" : b.getZip(),
-            b.getEMail() == null ? "" : b.getEMail().toLowerCase(),
-            b.getUserPass() == null ? "" : b.getUserPass().toLowerCase(),
+            b.getEMail() == null ? "" : b.getEMail().toLowerCase().trim(),
+            b.getUserPass() == null ? "" : b.getUserPass().toLowerCase().trim(),
             b.getSubjectText() == null ? "" : b.getSubjectText(),
             b.getSubjectTody() == null ? "" : b.getSubjectTody(),
             b.getAccessLvl()

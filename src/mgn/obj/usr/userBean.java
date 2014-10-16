@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean(name = "userBean")
 public class userBean  implements  Serializable{
          private int custId;
-         private int accessLvl = -1;
+         private int accessLvl = 0;
          private String accessLvlDesc;
          private String firstName;
          private String lastName;
@@ -37,7 +37,9 @@ public class userBean  implements  Serializable{
      * @return the custId
      */
     
-    
+    public String getDisplayName(){
+        return this.firstName+" "+this.getLastName();
+    }
     public int getCustId() {
         return custId;
     }
