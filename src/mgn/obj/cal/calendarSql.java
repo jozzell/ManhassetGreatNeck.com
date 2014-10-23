@@ -9,7 +9,7 @@ package mgn.obj.cal;
  * @author lmeans
  */
 public class calendarSql {
-    private static final String U2455ee55="skjdfksd",
+    private  final String U2455ee55="skjdfksd",
             
 
             sqlSelect =
@@ -23,20 +23,20 @@ public class calendarSql {
             //" c.dept_id, c.lookup_id,c.lookup_flag,c.subject_text,c.subject_body,moddate "+
             //" from mgn_calendar c";
     
-    public static String getCalSelectBydate(String dept){
+    public  String getCalSelectBydate(String dept){
         return sqlSelect+" where c.startDate >= ? and c.startDate <= ? and c.cal_type = ? "; //and c.dept_id in ("+dept+")";
     }
-    public static String getCalSelectBydateNext(String dept){
+    public  String getCalSelectBydateNext(String dept){
         return sqlSelect+" where c.startDate > ? and c.cal_type = ? and c.moddate >= ? and c.moddate <= ? and c.dept_id in ("+dept+")";
     }
-    public static String sqlGetSelectPostingList(int cnt){
+    public  String sqlGetSelectPostingList(int cnt){
             return sqlSelect+
           "  where  c.cal_type = ? and  "+
           " c.enddate >= DATE_FORMAT(now() ,'%Y-%m-%d') AND "+
           " c.startdate < DATE_FORMAT(DATE_ADD(now() ,interval "+cnt+" day),'%Y-%m-%d') "+
           " order by 13 desc";
     }
-    public static String sqlGetSelectPostingListToday(int cnt){
+    public  String sqlGetSelectPostingListToday(int cnt){
             return sqlSelect+
           "  where  c.cal_type = ? and  "+
           " c.enddate >= DATE_FORMAT(now() ,'%Y-%m-%d') AND "+
@@ -47,7 +47,7 @@ public class calendarSql {
           " order by 13 desc";
     }
     
-    public static final String
+    public  final String
      sqlSelectPostCnt =
             " select count(*), DATE_FORMAT(c.moddate ,'%Y-%m-%d'),c.cal_type "+
             " from mgn_calendar c  "+
@@ -84,7 +84,7 @@ public class calendarSql {
         " STATE ,  ZIP ,  ZIP_PLUS , PHONE , FAX , "+
         " EMAIL ,	website ,access_lvl,access_dept  from  mgnCalendar "
             ;
-    public static final String
+    public final String
       sqlCalInsert = 
           "  insert into  mgnCalendar (dept_id,CUST_ID ,	StartDate , enddate , 	short_desc, "+
 	" contactName ,	Long_desc ,ADDR1 , ADDR2 ,  CITY ,STATE ,  ZIP ,  ZIP_PLUS , PHONE , FAX , "+

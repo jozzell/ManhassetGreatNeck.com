@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author lmeans
  */
 public class mgrObj implements Serializable{
-    public static  String ck(String s) {
+    public   String ck(String s) {
         return s == null ? "" : s;
     }
 }

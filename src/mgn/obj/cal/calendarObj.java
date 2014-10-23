@@ -20,18 +20,22 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class calendarObj implements Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(calendarObj.class);
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(calendarObj.class);
+    calendarSql calendarSql;
+    public calendarObj(){
+        calendarSql = new calendarSql();
+    }
     //sqlGetSelectPostingListToday
-    public static List<calendarBean> getListByStartDateAndType(int type,Date Start,Date end,dbMgrInterface db){
+    public  List<calendarBean> getListByStartDateAndType(int type,Date Start,Date end,dbMgrInterface db){
         return getList(calendarSql.selectSqlStartDateAndType,new Object[]{Start,end,type},db);
     }
-    public static List<calendarBean> getListByEndDateAndType(int type,Date Start,Date end,dbMgrInterface db){
+    public  List<calendarBean> getListByEndDateAndType(int type,Date Start,Date end,dbMgrInterface db){
         return getList(calendarSql.selectSqlEndDateAndType,new Object[]{Start,end,type},db);
     }
-    public static List<calendarBean> getListByModDateAndType(int type,Date Start,Date end,dbMgrInterface db){
+    public  List<calendarBean> getListByModDateAndType(int type,Date Start,Date end,dbMgrInterface db){
         return getList(calendarSql.selectSqlModDateAndType,new Object[]{Start,end,type},db);
     }
-    public static List<calendarBean> getList(String sql,Object[] ary,dbMgrInterface db){
+    public  List<calendarBean> getList(String sql,Object[] ary,dbMgrInterface db){
         List<calendarBean> l = new ArrayList<calendarBean>();
         CachedRowSet rs = null;
         try {
@@ -48,13 +52,13 @@ public class calendarObj implements Serializable{
     }
     // =======================================================================
     
-    public static List<calendarBean> getListToday(int type,int days,dbMgrInterface db){
+    public  List<calendarBean> getListToday(int type,int days,dbMgrInterface db){
         return getList(type,calendarSql.sqlGetSelectPostingListToday(days),db);
     }
-    public static List<calendarBean> getList(int type,int days,dbMgrInterface db){
+    public  List<calendarBean> getList(int type,int days,dbMgrInterface db){
         return getList(type,calendarSql.sqlGetSelectPostingList(days),db);
     }
-    private static List<calendarBean> getList(int type,String sql,dbMgrInterface db){
+    private  List<calendarBean> getList(int type,String sql,dbMgrInterface db){
         List<calendarBean> l = new ArrayList<calendarBean>();
         CachedRowSet rs = null;
         try {
@@ -69,7 +73,7 @@ public class calendarObj implements Serializable{
         }
         return l;
     }
-    public static void saveCalBean(calendarBean b,dbMgrInterface db){
+    public  void saveCalBean(calendarBean b,dbMgrInterface db){
         try {
             
             db.updateDatabase(
@@ -79,7 +83,7 @@ public class calendarObj implements Serializable{
             logger.error(ex.toString());
         }
     }
-    public static calendarBean getCalEvent(int id,dbMgrInterface db ){
+    public  calendarBean getCalEvent(int id,dbMgrInterface db ){
         calendarBean calendarBean = new calendarBean();
         CachedRowSet rs = null;
         try {
@@ -94,7 +98,7 @@ public class calendarObj implements Serializable{
         }
         return calendarBean;
     }
-    private static calendarBean getCalenderBean(CachedRowSet r){
+    private  calendarBean getCalenderBean(CachedRowSet r){
         calendarBean b = null;
         try {
             b = new calendarBean();
@@ -124,7 +128,7 @@ public class calendarObj implements Serializable{
         }
         return b;
     }
-    private static Object[] getObject(calendarBean b){
+    private  Object[] getObject(calendarBean b){
 
             return new Object[]{
                 b.getCalRollupId(),

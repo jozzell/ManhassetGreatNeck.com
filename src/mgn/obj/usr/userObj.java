@@ -20,17 +20,20 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class userObj implements  Serializable{
-
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(userSql.class);
+    userSql userSql;
     
-    public static void updatePassword(int id,String password,dbMgrInterface db){
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(userSql.class);
+    public userObj(){
+        userSql = new userSql();
+    }
+    public  void updatePassword(int id,String password,dbMgrInterface db){
         try {
             db.updateDatabase(userSql.updatePassword, new Object[]{password.toLowerCase(),id});
         } catch (Exception ex) {
             logger.error(ex.toString());
         }
     }
-    public static userBean login(String user,String pass,dbMgrInterface db){
+    public  userBean login(String user,String pass,dbMgrInterface db){
         if (user == null || 
                 user.trim().length() == 0 ||
                 pass == null || 
@@ -52,7 +55,7 @@ public class userObj implements  Serializable{
         return b;
        
     }
-    public static List<userBean> select(dbMgrInterface db){
+    public  List<userBean> select(dbMgrInterface db){
         List<userBean> list = new ArrayList<userBean>();
         CachedRowSet rs = null;
         try {
@@ -68,7 +71,7 @@ public class userObj implements  Serializable{
         
         return list;
     }
-    public static userBean select(String email,dbMgrInterface db){
+    public  userBean select(String email,dbMgrInterface db){
          if (email == null || 
                 email.trim().length() == 0 ){
             return null;
@@ -91,10 +94,10 @@ public class userObj implements  Serializable{
     
     
     //select_byDept
-    public static List<userBean> selectALL(dbMgrInterface db){
+    public  List<userBean> selectALL(dbMgrInterface db){
         return select(userSql.select_byALL,new Object[]{},db);
     }
-    private static List<userBean> select(String sql, Object[] obj,dbMgrInterface db){
+    private  List<userBean> select(String sql, Object[] obj,dbMgrInterface db){
         List<userBean> list = new ArrayList<userBean>();
         CachedRowSet rs = null;
         try {
@@ -111,7 +114,7 @@ public class userObj implements  Serializable{
         return list;
     }
     
-    public static void update(userBean b, dbMgrInterface db) {
+    public  void update(userBean b, dbMgrInterface db) {
         try {
             if (b.getCustId() == 0) {
                
@@ -126,7 +129,7 @@ public class userObj implements  Serializable{
         }
     }
 
-    public static Object[] getsoulCustomerBean(userBean b) {
+    public  Object[] getsoulCustomerBean(userBean b) {
         if (b.getCustId() >  0){
             return new Object[]{
             b.getFirstName() == null ? "" : b.getFirstName(),
@@ -165,7 +168,7 @@ public class userObj implements  Serializable{
     }
 
    
-    private static userBean getSoulCustomerBean(CachedRowSet r) {
+    private  userBean getSoulCustomerBean(CachedRowSet r) {
        userBean b = null;
         try {
             b = new userBean();

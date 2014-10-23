@@ -18,9 +18,12 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class custObj  implements Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(custObj.class);
-    
-    public static int createUser(customerBean b, dbMgrInterface db) {
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(custObj.class);
+     custSql custSql;
+    public custObj(){
+        custSql = new custSql();
+    }
+    public  int createUser(customerBean b, dbMgrInterface db) {
         b.seteMail(b.geteMail().toLowerCase());
         try {
             if (b.getCustId() == 0) {
@@ -34,7 +37,7 @@ public class custObj  implements Serializable{
         }
         return b.getCustId();
     }
-    public static int getCustID(String email,dbMgrInterface db){
+    public  int getCustID(String email,dbMgrInterface db){
         int i = -1;
         CachedRowSet r;
         try {
@@ -47,7 +50,7 @@ public class custObj  implements Serializable{
         }
         return i;
     }
-    public static customerBean getcustomerBean(int id,dbMgrInterface db){
+    public  customerBean getcustomerBean(int id,dbMgrInterface db){
         customerBean b = null;
         CachedRowSet r;
          try {
@@ -60,7 +63,7 @@ public class custObj  implements Serializable{
         }
         return b;
     }
-    private static customerBean getcustomerBean(CachedRowSet r){
+    private  customerBean getcustomerBean(CachedRowSet r){
         customerBean b = new customerBean();
         try {
             b.setCustId(r.getInt(1)); 
@@ -89,7 +92,7 @@ public class custObj  implements Serializable{
         }
          return b;
     }
-    public static Object[] getObject(customerBean b,boolean update){
+    public  Object[] getObject(customerBean b,boolean update){
         return new Object[]{
            
             b.getFirstName() , 

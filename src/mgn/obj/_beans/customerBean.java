@@ -5,12 +5,14 @@
 package mgn.obj._beans;
 
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 import mgn.obj.mgnVar;
 
 /**
  *
  * @author lmeans
  */
+@ManagedBean(name = "customerBean")
 public class customerBean implements Serializable{
 
     private int custId;

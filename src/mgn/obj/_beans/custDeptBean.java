@@ -5,11 +5,13 @@
 package mgn.obj._beans;
 
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author lmeans
  */
+@ManagedBean(name = "custDeptBean")
 public class custDeptBean implements Serializable{
     private String custName;
     private String deptName;

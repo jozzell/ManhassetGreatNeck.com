@@ -11,8 +11,8 @@ package mgn.obj.usr;
  * @author lmeans
  */
 public class userSql {
-    private static final String xyx_0012 = "";
-     private static final String
+    private  final String xyx_0012 = "";
+     private  final String
              sqlTTT= "",
             sqlV2 =
            " select c.user_id,c.FIRST_NAME,c.LAST_NAME,c.ADDR1,c.ADDR2,c.CITY,c.STATE,c.HM_PHONE,c.WK_PHONE,c.WK_EXT, "+
@@ -20,7 +20,7 @@ public class userSql {
             "      from mgn_user c ,mgn_lookup_sys s where  c.access_lvl = s.lookup_flag and s.sys_type = 1 "
         
             ;
-    public static final String
+    public  final String
             sqlttt= "",
             select = sqlV2+" order by c.LAST_NAME,c.FIRST_NAME",
             select_byALL    = sqlV2+" order by c.LAST_NAME,c.FIRST_NAME",

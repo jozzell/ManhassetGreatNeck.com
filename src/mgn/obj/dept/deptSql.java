@@ -10,7 +10,7 @@ package mgn.obj.dept;
  */
 public class deptSql {
 
-    public static final String 
+    public  final String 
             sqlDeptCustDel ="delete from mgn_user_dept where user_id = ?",
             sqlDeptCustInsert =" insert into mgn_user_dept (user_id ,dept_id,access_lvl ) values (?,?,?) ",
             sqlDeptCustSelect = "Select user_id ,dept_id,access_lvl from mgn_user_dept where user_id = ? ",

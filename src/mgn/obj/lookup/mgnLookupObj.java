@@ -21,8 +21,12 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class mgnLookupObj implements Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(mgnLookupObj.class);
-    public static List<mgnLookupBean> getLookupList(int type,dbMgrInterface db){
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(mgnLookupObj.class);
+    mgnLookupSql mgnLookupSql;
+    public mgnLookupObj(){
+        mgnLookupSql = new mgnLookupSql();
+    }
+    public  List<mgnLookupBean> getLookupList(int type,dbMgrInterface db){
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
         CachedRowSet r = null;
         try {
@@ -37,7 +41,7 @@ public class mgnLookupObj implements Serializable{
         }
         return list;
     }
-    public static mgnLookupBean getlookupBean(CachedRowSet r){
+    public  mgnLookupBean getlookupBean(CachedRowSet r){
         mgnLookupBean b = new mgnLookupBean();
         try {
             b.setLookupId(r.getInt(1));

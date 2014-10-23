@@ -23,15 +23,20 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class mgnSysLookupObj implements Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(mgnSysLookupObj.class);
-    
-    public static List<mgnLookupBean> getSysLookupList(int type,dbMgrInterface db){
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(mgnSysLookupObj.class);
+    mgnSysLookupSql mgnSysLookupSql;
+    mgnLookupObj mgnLookupObj;
+    public mgnSysLookupObj(){
+        mgnSysLookupSql = new mgnSysLookupSql();
+        mgnLookupObj = new mgnLookupObj();
+    }
+    public  List<mgnLookupBean> getSysLookupList(int type,dbMgrInterface db){
         return getSysLookupList(mgnSysLookupSql.sqlSysLookupByType,new Object[]{type},db);
     }
-    public static List<mgnLookupBean> getSysLookupListAccess(int type,int access,dbMgrInterface db){
+    public  List<mgnLookupBean> getSysLookupListAccess(int type,int access,dbMgrInterface db){
         return getSysLookupList(mgnSysLookupSql.sqlSysLookupAccessLvl,new Object[]{type,access},db);
     }
-    public static List<mgnLookupBean> getSysLookupList(String sql,Object[] obj,dbMgrInterface db){
+    public  List<mgnLookupBean> getSysLookupList(String sql,Object[] obj,dbMgrInterface db){
         
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
         CachedRowSet r = null;

@@ -11,11 +11,11 @@ package mgn.obj.lookup;
  * @author lmeans
  */
 public class mgnLookupSql {
-    final static String sql = 
+    final  String sql = 
             " SELECT l.lookup_id,l.lookup_rollup_id,l.lookup_type,l.lookup_desc,l.lookup_flag,l.subject_text, "+
             " l.subject_body FROM mgn_lookup l "
            ;
-    public static final String
+    public  final String
        
        sqlLookupByType = sql + "where l.lookup_type = ?  order by l.lookup_desc";
 }

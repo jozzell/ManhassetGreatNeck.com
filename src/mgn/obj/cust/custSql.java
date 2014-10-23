@@ -9,13 +9,13 @@ package mgn.obj.cust;
  * @author lmeans
  */
 public class custSql {
-  private static final String 
+  private  final String 
          sqlCust =
             " select cust_id ,email_key ,keyStr ,FIRST_NAME , LAST_NAME, ADDR1 , "
             + " ADDR2 , CITY, STATE,HM_PHONE , WK_PHONE , WK_EXT ,ZIP , "
             + " EMAIL ,dbId ,	user_name ,user_pass ,	vendor_id ,access_lvl  ,   SPONSOR_LINK_ID"
             + " From mgnCUSTOMER ";
-    public static final String  
+    public  final String  
            
             sqlSelectCustChk =
             " select max(cust_id) from mgnCUSTOMER where EMAIL = ? ",

@@ -1,0 +1,2 @@
+http: https://github.com/jozzell/ManhassetGreatNeck.com.git
+ssh: git@github.com:jozzell/ManhassetGreatNeck.com.git

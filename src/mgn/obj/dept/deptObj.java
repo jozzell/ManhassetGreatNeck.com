@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import mgn.obj._beans.deptBean;
-import static mgn.obj.usr.userObj.logger;
+
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +20,12 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class deptObj implements Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(deptObj.class);
-    
-    public static List<String> getDept(int user,  dbMgrInterface db){
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(deptObj.class);
+    deptSql deptSql;
+    public deptObj(){
+        deptSql = new deptSql();
+    }
+    public  List<String> getDept(int user,  dbMgrInterface db){
         List<String> l = new ArrayList<String>();
         CachedRowSet rs = null;
         try {
@@ -35,14 +38,14 @@ public class deptObj implements Serializable{
         }
         return l;
     }
-    public static void insertUserDept(int user,int dept,int access, dbMgrInterface db){
+    public  void insertUserDept(int user,int dept,int access, dbMgrInterface db){
         try {
             db.updateDatabase(deptSql.sqlDeptCustInsert, new Object[]{user,dept,access});
         } catch (Exception ex) {
             logger.error(ex.toString());
         }
     }
-    public static void deleteUserDept(int user, dbMgrInterface db){
+    public  void deleteUserDept(int user, dbMgrInterface db){
         try {
             db.updateDatabase(deptSql.sqlDeptCustDel, new Object[]{user});
         } catch (Exception ex) {

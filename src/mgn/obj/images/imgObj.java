@@ -23,13 +23,16 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class imgObj implements Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(imgObj.class);
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(imgObj.class);
+    imgSql imgSql;
     
-   
-    public static List<mgnFileBean> getFileDirList(int id,dbMgrInterface db){
+   public imgObj(){
+       imgSql = new imgSql();
+   }
+    public  List<mgnFileBean> getFileDirList(int id,dbMgrInterface db){
         return getMgnFileBean(imgSql.sqlSelectFileDirectory,db,new Object[]{id});
     }
-    private static List<mgnFileBean> getMgnFileBean(String sql,dbMgrInterface db,Object[] obj){
+    private  List<mgnFileBean> getMgnFileBean(String sql,dbMgrInterface db,Object[] obj){
         List<mgnFileBean> l= new ArrayList<mgnFileBean>();
          CachedRowSet r = null;
         try {
@@ -44,7 +47,7 @@ public class imgObj implements Serializable{
         }
         return l;
     }
-    public static mgnFileBean getMgnFileBean(CachedRowSet r){
+    public  mgnFileBean getMgnFileBean(CachedRowSet r){
         mgnFileBean b = new mgnFileBean();
         try {
             b.setDir_id(r.getInt(1));
@@ -60,7 +63,7 @@ public class imgObj implements Serializable{
         return b;
     }
     /// ======================================================================
-    public static List<mgnLookupBean> selectImageBatch(int id,dbMgrInterface db){
+    public  List<mgnLookupBean> selectImageBatch(int id,dbMgrInterface db){
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
         
          CachedRowSet r = null;
@@ -83,7 +86,7 @@ public class imgObj implements Serializable{
         
         
     }
-    public static List<mgnLookupBean> selectImageBatch(String sql,dbMgrInterface db,Object[] obj){
+    public  List<mgnLookupBean> selectImageBatch(String sql,dbMgrInterface db,Object[] obj){
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
         CachedRowSet r = null;
         try {
@@ -104,13 +107,13 @@ public class imgObj implements Serializable{
         }
         return list;
     }
-    public static List<imgBean> selectImageList(dbMgrInterface db){
+    public  List<imgBean> selectImageList(dbMgrInterface db){
         return selectImageList(imgSql.sqlSelectImagesDefault,db,null);
     }
-    public static List<imgBean> selectImageList(int dirId,dbMgrInterface db){
+    public  List<imgBean> selectImageList(int dirId,dbMgrInterface db){
         return selectImageList(imgSql.sqlSelectImages,db,new Object[]{dirId});
     }
-    public static List<imgBean> selectImageList(String sql,dbMgrInterface db,Object[] obj){
+    public  List<imgBean> selectImageList(String sql,dbMgrInterface db,Object[] obj){
         List<imgBean> list = new ArrayList<imgBean>();
         CachedRowSet r = null;
         try {

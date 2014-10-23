@@ -20,12 +20,15 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class videoObj implements  Serializable{
-    public static final Logger logger = (Logger) LoggerFactory.getLogger(videoObj.class);
-    
-    public static List<videoBean> getVideoBeanList(int type,dbMgrInterface db){
+    public  final Logger logger = (Logger) LoggerFactory.getLogger(videoObj.class);
+    videoSql videoSql;
+    public videoObj(){
+        videoSql = new videoSql();
+    }
+    public  List<videoBean> getVideoBeanList(int type,dbMgrInterface db){
         return getVideoBeanList(videoSql.sqlSelectVideoByType,new Object[]{type},db);
     }
-    private static List<videoBean> getVideoBeanList(String sql,Object[] obj,dbMgrInterface db){
+    private  List<videoBean> getVideoBeanList(String sql,Object[] obj,dbMgrInterface db){
         List<videoBean> l = new ArrayList<videoBean>();
         CachedRowSet r = null;
         try {
@@ -40,7 +43,7 @@ public class videoObj implements  Serializable{
         }
         return l;
     }
-    public static videoBean getVideoBean(CachedRowSet r){
+    public  videoBean getVideoBean(CachedRowSet r){
         videoBean b = new videoBean();
         try {
             
