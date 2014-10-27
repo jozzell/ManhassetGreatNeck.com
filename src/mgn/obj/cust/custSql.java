@@ -4,11 +4,13 @@
  */
 package mgn.obj.cust;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class custSql {
+public class custSql implements Serializable{
   private  final String 
          sqlCust =
             " select cust_id ,email_key ,keyStr ,FIRST_NAME , LAST_NAME, ADDR1 , "

@@ -12,7 +12,6 @@ import java.util.List;
 import mgn.obj.lookup.mgnLookupBean;
 import mgn.obj.lookup.mgnLookupObj;
 
-import mgn.obj.lookup.mgnLookupSql;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

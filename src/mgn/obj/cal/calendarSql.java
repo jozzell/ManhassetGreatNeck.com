@@ -4,11 +4,13 @@
  */
 package mgn.obj.cal;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class calendarSql {
+public class calendarSql implements Serializable{
     private  final String U2455ee55="skjdfksd",
             
 

@@ -7,7 +7,6 @@ package mgn.obj.dept;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import mgn.obj._beans.deptBean;
 
 import obj.db.v1.dbMgrInterface;

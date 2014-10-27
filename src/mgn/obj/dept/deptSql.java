@@ -4,11 +4,13 @@
  */
 package mgn.obj.dept;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class deptSql {
+public class deptSql implements Serializable{
 
     public  final String 
             sqlDeptCustDel ="delete from mgn_user_dept where user_id = ?",

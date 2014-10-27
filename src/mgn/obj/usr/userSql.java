@@ -6,11 +6,13 @@
 
 package mgn.obj.usr;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class userSql {
+public class userSql implements Serializable{
     private  final String xyx_0012 = "";
      private  final String
              sqlTTT= "",

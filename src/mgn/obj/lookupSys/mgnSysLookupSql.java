@@ -6,11 +6,13 @@
 
 package mgn.obj.lookupSys;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class mgnSysLookupSql {
+public class mgnSysLookupSql implements Serializable{
     private  final String  sqlSys = 
             " SELECT s.sys_id,s.sys_rollup_id,s.sys_type,s.sys_desc,s.lookup_flag, "+
             " s.subject_text,s.subject_body "+

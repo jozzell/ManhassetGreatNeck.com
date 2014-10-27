@@ -6,11 +6,13 @@
 
 package mgn.obj.images;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class imgSql {
+public class imgSql implements Serializable{
     private  final String tmp4 = "x",
      fileDir = " select dir_id,dir_name,dir_desc,dir_text,dir_group,user_id from mgn_files_dir ",
      sqlBatchXX =

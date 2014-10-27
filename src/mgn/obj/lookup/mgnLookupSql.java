@@ -6,11 +6,13 @@
 
 package mgn.obj.lookup;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lmeans
  */
-public class mgnLookupSql {
+public class mgnLookupSql implements Serializable{
     final  String sql = 
             " SELECT l.lookup_id,l.lookup_rollup_id,l.lookup_type,l.lookup_desc,l.lookup_flag,l.subject_text, "+
             " l.subject_body FROM mgn_lookup l "

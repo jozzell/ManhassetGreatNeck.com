@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import mgn.obj.lookup.mgnLookupBean;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;

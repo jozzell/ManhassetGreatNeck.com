@@ -7,7 +7,6 @@ package mgn.obj.cust;
 import java.io.Serializable;
 import java.sql.SQLException;
 import mgn.obj._beans.customerBean;
-import mgn.obj.mgrObj;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
