@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author lmeans
  */
 public class mgnVar implements Serializable{
-    public static final int
+    public  final int
             sysId_User_Pending = -101,
             sysId_SpinneyHillImageBatch = -10;
 }

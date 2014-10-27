@@ -36,7 +36,7 @@ public class loadImageDb implements Serializable{
                 lookupid++;
             }
             
-            System.err.println("INSERT INTO mgn_files (file_desc,file_name,file_type,dir_id,lookup_id) VALUES ('Page "+str+"','"+file.getName()+"',"+-10+","+dirID+","+lookupid+");");
+            //System.err.println("INSERT INTO mgn_files (file_desc,file_name,file_type,dir_id,lookup_id) VALUES ('Page "+str+"','"+file.getName()+"',"+-10+","+dirID+","+lookupid+");");
             
             
             //results.add(file.getName());

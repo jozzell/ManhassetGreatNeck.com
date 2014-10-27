@@ -13,7 +13,7 @@ import mgn.obj.mgnVar;
  * @author lmeans
  */
 @ManagedBean(name = "customerBean")
-public class customerBean implements Serializable{
+public class customerBean extends mgnVar implements Serializable{
 
     private int custId;
     private String email_key;
@@ -34,7 +34,7 @@ public class customerBean implements Serializable{
     private String userName;
     private String userPass;
     private int vendorId;
-    private int accessLevel=mgnVar.sysId_User_Pending;
+    private int accessLevel=sysId_User_Pending;
     private int sponsorLinkId;
 
     /**
