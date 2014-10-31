@@ -20,5 +20,5 @@ public class videoSql implements Serializable{
     " FROM mgn_video v,mgn_lookup l "+
     " where l.lookup_id = v.lookup_id ";
     public  final String
-            sqlSelectVideoByType = sql+" and v.video_type = ? order by v.lookup_flag desc,v.video_desc";
+            sqlSelectVideoByType = sql+" and v.video_type = ? order by v.lookup_flag desc,v.video_desc desc";
 }

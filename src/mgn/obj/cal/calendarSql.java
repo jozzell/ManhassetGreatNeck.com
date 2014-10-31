@@ -67,13 +67,13 @@ public class calendarSql implements Serializable{
         calInsert =
            " INSERT INTO mgn_calendar "+
             " (cal_rollup_id,cal_desc,cal_type,startDate,enddate,user_id, "+
-            " dept_id,lookup_id,lookup_flag,subject_text,subject_body) VALUES "+
-            " (?,?,?,?,?,?,?,?,?,?,?)",
+            " dept_id,lookup_id,lookup_flag,subject_text,subject_body,moddate) VALUES "+
+            " (?,?,?,?,?,?,?,?,?,?,?,?)",
         calUpdate_v2 =
            " UPDATE mgn_calendar  SET "+
             " cal_rollup_id = ?,cal_desc = ?,cal_type = ?, startDate = ?, "+
             " enddate = ?, user_id = ?,dept_id = ?,lookup_id = ?,lookup_flag = ?, "+
-            " subject_text = ?,subject_body = ?  WHERE cal_id = ? ",
+            " subject_text = ?,subject_body = ? , moddate = ? WHERE cal_id = ? ",
             // ================================================================
             
             

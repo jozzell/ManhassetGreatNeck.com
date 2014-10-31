@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import obj.db.v1.dbMgrInterface;
@@ -142,7 +143,7 @@ public class calendarObj implements Serializable{
                 b.getLookupFlag(),
                 b.getSubjectText() == null ? "": b.getSubjectText(),
                 b.getSubjectBody() == null ? "": b.getSubjectBody(),
-                
+                 new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,
                 b.getCalId() <= 0 ? null :b.getCalId()
                   
             };
