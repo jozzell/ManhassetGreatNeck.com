@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class calendarSql implements Serializable{
     private  final String U2455ee55="skjdfksd",
             
-
+            
             sqlSelect =
             " select c.cal_id,c.cal_rollup_id,c.cal_desc,c.cal_type,c.startDate,c.enddate,c.user_id, "+
             " c.dept_id, c.lookup_id,c.lookup_flag,c.subject_text,c.subject_body,c.moddate, "+
@@ -50,6 +50,8 @@ public class calendarSql implements Serializable{
     }
     
     public  final String
+     sqlSelectSchedule = "select schedule_id,sys_id,cust_id,hrs, min, dur, dow,dow_ind, lookup_id, subject_text, subject_body "+
+            " from  mgn_schedule where sys_id = ?",
      sqlSelectPostCnt =
             " select count(*), DATE_FORMAT(c.moddate ,'%Y-%m-%d'),c.cal_type "+
             " from mgn_calendar c  "+

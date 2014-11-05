@@ -8,13 +8,14 @@ package mgn.obj.images;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import mgn.obj._beans._resetBean;
 
 /**
  *
  * @author lmeans
  */
 @ManagedBean(name = "imgBean")
-public class imgBean   implements Serializable{
+public class imgBean extends _resetBean   implements Serializable{
     private int fileId;
     private String fileName;
     private String fileDesc;

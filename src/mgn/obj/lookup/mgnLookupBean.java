@@ -2,6 +2,7 @@ package mgn.obj.lookup;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import mgn.obj._beans._resetBean;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,7 +15,7 @@ import javax.faces.bean.ManagedBean;
  * @author lmeans
  */
 @ManagedBean(name = "mgnLookupBean")
-public class mgnLookupBean implements Serializable{
+public class mgnLookupBean extends _resetBean  implements Serializable{
     private int lookupId,lookupRollupId,lookupType,lookupFlag;
     private String lookupDesc;
     private String subjectText,subjectBody;

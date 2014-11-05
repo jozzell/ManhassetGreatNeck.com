@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,47 @@ public class calendarObj implements Serializable{
     public calendarObj(){
         calendarSql = new calendarSql();
     }
+    public List<scheduleBean> getsqlSelectSchedule(int sysId, dbMgrInterface db) {
+        return getsqlSelectSchedule(sysId,calendarSql.sqlSelectSchedule,db);
+    }
+    public List<scheduleBean> getsqlSelectSchedule(int sysId, String sql,dbMgrInterface db) {
+        List<scheduleBean> list = new ArrayList<scheduleBean>();
+         CachedRowSet rs = null;
+         try {
+            rs = db.getCachedRowSet(sql, new Object[]{sysId});
+            while(rs.next()){
+                list.add(getscheduleBean(rs));
+            }
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        } finally {
+            db.closeCachedRowSet(rs);
+        }
+        return list;
+        
+    }
+    public scheduleBean getscheduleBean(CachedRowSet rs){
+        scheduleBean b = new scheduleBean();
+        try {
+            b.setScheduleId(rs.getInt(1));
+            b.setSysId(rs.getInt(2));
+            b.setCustId(rs.getInt(3));
+            b.setHrs(rs.getInt(4));
+            b.setMin(rs.getInt(5));
+            b.setDur(rs.getInt(6));
+            b.setDow(rs.getInt(7));
+            b.setDowInd(rs.getInt(8));
+            b.setLookup(rs.getInt(9));
+             b.setText(rs.getString(10));
+            b.setBody((String)rs.getObject(11));
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+        }
+        return b;
+    }
+    
+    
+    
     //sqlGetSelectPostingListToday
     public  List<calendarBean> getListByStartDateAndType(int type,Date Start,Date end,dbMgrInterface db){
         return getList(calendarSql.selectSqlStartDateAndType,new Object[]{Start,end,type},db);

@@ -3,6 +3,7 @@ package mgn.obj.images;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import mgn.obj._beans._resetBean;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,7 @@ import javax.faces.bean.ManagedBean;
  * @author lmeans
  */
 @ManagedBean(name = "imageBean")
-public class imageBean implements Serializable{
+public class imageBean extends _resetBean implements Serializable{
     public imageBean(String name){
         this.fileName = name;
     }

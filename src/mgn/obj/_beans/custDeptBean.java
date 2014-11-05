@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedBean;
  * @author lmeans
  */
 @ManagedBean(name = "custDeptBean")
-public class custDeptBean implements Serializable{
+public class custDeptBean extends _resetBean implements Serializable{
     private String custName;
     private String deptName;
     private int custId;

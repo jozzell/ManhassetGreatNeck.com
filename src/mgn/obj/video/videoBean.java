@@ -2,6 +2,7 @@ package mgn.obj.video;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import mgn.obj._beans._resetBean;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,7 +15,7 @@ import javax.faces.bean.ManagedBean;
  * @author lmeans
  */
 @ManagedBean
-public class videoBean  implements Serializable{
+public class videoBean extends _resetBean  implements Serializable{
 	private int videoId;
 	private int videoType;
 	private String videoDesc;

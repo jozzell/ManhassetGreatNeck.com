@@ -10,10 +10,11 @@ package mgn.obj.cal;
 import java.io.Serializable;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
+import mgn.obj._beans._resetBean;
 
 
 @ManagedBean(name = "calendarBean")
-public class calendarBean implements Serializable{
+public class calendarBean extends _resetBean implements Serializable{
     private int calId ;
     private int calRollupId ;
 	private String calDesc;

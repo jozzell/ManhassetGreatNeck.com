@@ -13,6 +13,7 @@ import java.io.Serializable;
  * @author lmeans
  */
 public class videoSql implements Serializable{
+    private String x2w = "";
     private  final String sql =
     " SELECT  v.video_id,v.video_type,v.video_desc,v.video_value,v.video_width, "+
     " v.video_height,v.video_player,v.lookup_id,v.sys_id,v.lookup_flag,v.subject_text, "+

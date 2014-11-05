@@ -8,13 +8,14 @@ package mgn.obj.usr;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import mgn.obj._beans._resetBean;
 
 /**
  *
  * @author lmeans
  */
 @ManagedBean(name = "userBean")
-public class userBean  implements  Serializable{
+public class userBean extends _resetBean  implements  Serializable{
          private int custId;
          private int accessLvl = 0;
          private String accessLvlDesc;
