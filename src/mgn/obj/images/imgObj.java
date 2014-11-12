@@ -10,7 +10,9 @@ package mgn.obj.images;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
 import mgn.obj.lookup.mgnLookupBean;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
@@ -28,6 +30,55 @@ public class imgObj implements Serializable{
    public imgObj(){
        imgSql = new imgSql();
    }
+   public void insert(imgBean imgBean, dbMgrInterface db){
+        try {
+            db.updateDatabase(imgSql.fileImgInc, getObj(imgBean));
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+        }
+   }
+   public Object[] getObj(imgBean b){
+       return new Object[]{
+           b.getFileName() == null ? "":b.getFileName(),
+            b.getFileDesc() == null ? "":b.getFileDesc(),
+           b.getFileText() == null ? "": b.getFileText(),
+           b.getFileType(),
+           b.getDirId(),
+           b.getLookupID()
+       };
+   }
+   public int getDirID(dirBean dirBean,dbMgrInterface db){
+       dirBean.setSearchKey(dirBean.getUserId()+"_"+Calendar.getInstance().getTimeInMillis());
+       Object[] obj = getFileDirObj(dirBean);
+       CachedRowSet r = null;
+       int dirID =-1;
+        try {
+            db.updateDatabase(imgSql.fileDirIns, obj);
+            r = db.getCachedRowSet(imgSql.fileDirSelect_searchKey,new Object[]{dirBean.getSearchKey()});
+            
+            while(r.next()){
+                dirID = r.getInt(1);
+            }
+            
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+        }finally {
+            db.closeCachedRowSet(r);
+        }
+        return dirID;
+   }
+   public Object[] getFileDirObj(final dirBean b){
+       return new Object[]{
+          
+           b.getDirName(),
+           b.getDirDesc(),
+           b.getDirText(),
+           b.getDirGroup(),
+           b.getUserId(),
+           b.getSearchKey()
+       };
+   }
+   // ================================================================
     public  List<mgnFileBean> getFileDirList(int id,dbMgrInterface db){
         return getMgnFileBean(imgSql.sqlSelectFileDirectory,db,new Object[]{id});
     }

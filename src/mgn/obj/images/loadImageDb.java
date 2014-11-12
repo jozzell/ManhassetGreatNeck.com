@@ -50,21 +50,9 @@ public class loadImageDb implements Serializable{
     public static void main(String[] args){
         loadImageDb loadImageDb = new loadImageDb();
         
-        loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn",
-                "adult_learning_center",
-                1);
-         loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn",
-               "learning_center",
-                2);
-        loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn",
-               "otd2k7",
-                3);
-         loadImageDb.dirScan(
-                "C:/_bisc/_javaApps/jlData/mgn",
-                "pond_view_homes",
-                4);
+        //loadImageDb.dirScan("C:/_bisc/_javaApps/jlData/mgn","adult_learning_center",1);
+        //loadImageDb.dirScan("C:/_bisc/_javaApps/jlData/mgn","learning_center", 2);
+        //loadImageDb.dirScan("C:/_bisc/_javaApps/jlData/mgn","otd2k7",3);
+       
     }
 }

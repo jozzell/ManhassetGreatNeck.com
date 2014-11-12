@@ -25,6 +25,7 @@ public class imgBean extends _resetBean   implements Serializable{
     private String dirName;
     private String sysDesc;
     private String rootPath;
+    private int lookupID;
 
     /**
      * @return the fileId
@@ -152,6 +153,20 @@ public class imgBean extends _resetBean   implements Serializable{
         this.rootPath = rootPath;
     }
     public String fileDirectory(){
-        return rootPath+"/"+dirName+"/"+fileName;
+        return getRootPath()+"/"+getDirName()+"/"+getFileName();
+    }
+
+    /**
+     * @return the lookupID
+     */
+    public int getLookupID() {
+        return lookupID;
+    }
+
+    /**
+     * @param lookupID the lookupID to set
+     */
+    public void setLookupID(int lookupID) {
+        this.lookupID = lookupID;
     }
 }

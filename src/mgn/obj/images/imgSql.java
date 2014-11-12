@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 public class imgSql implements Serializable{
     private  final String tmp4 = "x",
+     
+    
      fileDir = " select dir_id,dir_name,dir_desc,dir_text,dir_group,user_id from mgn_files_dir ",
      sqlBatchXX =
              " SELECT l.lookup_id,l.lookup_desc,l.subject_text ,d.dir_name,d.dir_id "+
@@ -26,7 +28,10 @@ public class imgSql implements Serializable{
             " where d.dir_id = f.dir_id and s.sys_id =  f.file_type ";
         
     public  final String tmp5= "x",
+            fileDirIns = "insert into mgn_files_dir (dir_name,dir_desc,dir_text,dir_group,user_id,searchKey) values (?,?,?,?,?,?)",
+            fileImgInc = "insert into mgn_files (file_name,file_desc,file_text,file_type,dir_id,lookup_id) values (?,?,?,?,?,?)",
             sqlSelectFileDirectory = fileDir+" where dir_group = ? order by upper (dir_desc)",
+            fileDirSelect_searchKey = "select max(dir_id) from mgn_files_dir where searchKey = ?",
             sqlGrabFileDescName = "SELECT distinct file_desc,lookup_id from mgn_files where dir_id = ? order by upper(file_desc)",
             
         sqlSelectImagesDefault = 

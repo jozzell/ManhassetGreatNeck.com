@@ -17,7 +17,7 @@ import mgn.obj._beans._resetBean;
 @ManagedBean(name = "mgnLookupBean")
 public class mgnLookupBean extends _resetBean  implements Serializable{
     private int lookupId,lookupRollupId,lookupType,lookupFlag;
-    private String lookupDesc;
+    private String lookupDesc,searchKey;
     private String subjectText,subjectBody;
 
     /**
@@ -116,5 +116,19 @@ public class mgnLookupBean extends _resetBean  implements Serializable{
      */
     public void setSubjectBody(String subjectBody) {
         this.subjectBody = subjectBody;
+    }
+
+    /**
+     * @return the searchKey
+     */
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    /**
+     * @param searchKey the searchKey to set
+     */
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
     }
 }

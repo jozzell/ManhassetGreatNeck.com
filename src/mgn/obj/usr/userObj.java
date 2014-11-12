@@ -9,7 +9,9 @@ package mgn.obj.usr;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
 import obj.db.v1.dbMgrInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,13 @@ public class userObj implements  Serializable{
     public  final Logger logger = (Logger) LoggerFactory.getLogger(userSql.class);
     public userObj(){
         userSql = new userSql();
+    }
+    public void trackUser(String id,dbMgrInterface db){
+        try {
+            db.updateDatabase(userSql.mgn_access, new Object[]{id,Calendar.getInstance().getTime()});
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        }
     }
     public  void updatePassword(int id,String password,dbMgrInterface db){
         try {

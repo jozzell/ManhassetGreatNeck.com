@@ -18,6 +18,8 @@ public class mgnLookupSql implements Serializable{
             " l.subject_body FROM mgn_lookup l "
            ;
     public  final String
-       
+       sqlLookupIns = "insert into mgn_lookup (lookup_rollup_id,lookup_type,lookup_desc,lookup_flag,subject_text,subject_body,searchKey )"+
+            " values (?,?,?,?,?,?,?)",
+       sqlLookupkey = "select max(lookup_id) from mgn_lookup where searchKey = ?",
        sqlLookupByType = sql + "where l.lookup_type = ?  order by l.lookup_desc";
 }

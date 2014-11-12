@@ -16,6 +16,7 @@ public class userSql implements Serializable{
     private  final String xyx_0012 = "";
      private  final String
              sqlTTT= "",
+             
             sqlV2 =
            " select c.user_id,c.FIRST_NAME,c.LAST_NAME,c.ADDR1,c.ADDR2,c.CITY,c.STATE,c.HM_PHONE,c.WK_PHONE,c.WK_EXT, "+
            " c.ZIP,c.EMAIL,c.user_pass,c.subject_text,c.subject_body,c.access_lvl,  s.sys_desc " +
@@ -24,6 +25,7 @@ public class userSql implements Serializable{
             ;
     public  final String
             sqlttt= "",
+            mgn_access = "insert into mgn_access (mgn_id,mgn_ts) values (?,?)",
             select = sqlV2+" order by c.LAST_NAME,c.FIRST_NAME",
             select_byALL    = sqlV2+" order by c.LAST_NAME,c.FIRST_NAME",
             select_byDeptNEW = sqlV2+" and c.user_id not in (select x.user_id from mgn_user_dept x where c.user_id = x.user_id and dept_id = ?)",

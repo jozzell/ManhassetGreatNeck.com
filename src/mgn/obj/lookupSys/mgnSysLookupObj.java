@@ -29,6 +29,19 @@ public class mgnSysLookupObj implements Serializable{
         mgnSysLookupSql = new mgnSysLookupSql();
         mgnLookupObj = new mgnLookupObj();
     }
+    public void chckConection(dbMgrInterface db) throws Exception{
+        CachedRowSet r = null;
+        try {
+            r = db.getCachedRowSet(mgnSysLookupSql.sqlcheck, new Object[]{});
+            while(r.next()){
+                
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+           db.closeCachedRowSet(r);
+        }
+    }
     public  List<mgnLookupBean> getSysLookupList(int type,dbMgrInterface db){
         return getSysLookupList(mgnSysLookupSql.sqlSysLookupByType,new Object[]{type},db);
     }
