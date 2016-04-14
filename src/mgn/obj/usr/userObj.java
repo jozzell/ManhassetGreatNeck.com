@@ -6,15 +6,15 @@
 
 package mgn.obj.usr;
 
+import jvp.obj.bean.userBean;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Level;
 import obj.db.v1.dbMgrInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 /**
@@ -24,7 +24,7 @@ import sun.jdbc.rowset.CachedRowSet;
 public class userObj implements  Serializable{
     userSql userSql;
     
-    public  final Logger logger = (Logger) LoggerFactory.getLogger(userSql.class);
+    public  final Logger logger = (Logger) Logger.getLogger(userObj.class);
     public userObj(){
         userSql = new userSql();
     }

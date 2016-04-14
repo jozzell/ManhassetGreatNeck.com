@@ -7,14 +7,15 @@
 package mgn.obj.lookup;
 
 
+import mgn.obj._beans.mgnLookupBean;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import obj.db.v1.dbMgrInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 /**
@@ -22,12 +23,13 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class mgnLookupObj implements Serializable{
-    public  final Logger logger = (Logger) LoggerFactory.getLogger(mgnLookupObj.class);
+    public  final Logger logger = (Logger) Logger.getLogger(mgnLookupObj.class);
     mgnLookupSql mgnLookupSql;
     public mgnLookupObj(){
         mgnLookupSql = new mgnLookupSql();
     }
     public int insertRec(int user,mgnLookupBean bean,dbMgrInterface db){
+        
         int id = -1;
         CachedRowSet r = null;
         bean.setSearchKey(user+"_"+Calendar.getInstance().getTimeInMillis());
@@ -58,12 +60,18 @@ public class mgnLookupObj implements Serializable{
            b.getSearchKey()
         };
     }
-
+    //sqlLookupByTypeRollup
     public  List<mgnLookupBean> getLookupList(int type,dbMgrInterface db){
+        return getLookupList(new Object[]{type},mgnLookupSql.sqlLookupByType,db);
+    }
+    public  List<mgnLookupBean> getLookupListTypeRollup(int type,int Rollup,dbMgrInterface db){
+        return getLookupList(new Object[]{type,Rollup},mgnLookupSql.sqlLookupByTypeRollup,db);
+    }
+    public  List<mgnLookupBean> getLookupList(Object[] obj,String sql,dbMgrInterface db){
         List<mgnLookupBean> list = new ArrayList<mgnLookupBean>();
         CachedRowSet r = null;
         try {
-            r = db.getCachedRowSet(mgnLookupSql.sqlLookupByType, new Object[]{type});
+            r = db.getCachedRowSet(sql, obj);
             while(r.next()){
                 list.add(getlookupBean(r));
             }

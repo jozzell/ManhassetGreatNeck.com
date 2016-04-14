@@ -5,6 +5,7 @@
 package mgn.obj._beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import mgn.obj.mgnVar;
 
@@ -16,6 +17,9 @@ import mgn.obj.mgnVar;
 public class customerBean extends mgnVar implements Serializable{
 
     private int custId;
+    private Date dob;
+    private int rollup_id;
+    private String email_chk;
     private String email_key;
     private String keyStr;
     private String firstName;
@@ -33,6 +37,7 @@ public class customerBean extends mgnVar implements Serializable{
     private int dbId;
     private String userName;
     private String userPass;
+    private String userPassChk;
     private int vendorId;
     private int accessLevel=sysId_User_Pending;
     private int sponsorLinkId;
@@ -236,14 +241,14 @@ public class customerBean extends mgnVar implements Serializable{
     /**
      * @return the eMail
      */
-    public String geteMail() {
+    public String getEMail() {
         return eMail;
     }
 
     /**
      * @param eMail the eMail to set
      */
-    public void seteMail(String eMail) {
+    public void setEMail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -329,5 +334,61 @@ public class customerBean extends mgnVar implements Serializable{
      */
     public void setSponsorLinkId(int sponsorLinkId) {
         this.sponsorLinkId = sponsorLinkId;
+    }
+
+    /**
+     * @return the dob
+     */
+    public Date getDob() {
+        return dob;
+    }
+
+    /**
+     * @param dob the dob to set
+     */
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * @return the rollup_id
+     */
+    public int getRollup_id() {
+        return rollup_id;
+    }
+
+    /**
+     * @param rollup_id the rollup_id to set
+     */
+    public void setRollup_id(int rollup_id) {
+        this.rollup_id = rollup_id;
+    }
+
+    /**
+     * @return the email_chk
+     */
+    public String getEmail_chk() {
+        return email_chk;
+    }
+
+    /**
+     * @param email_chk the email_chk to set
+     */
+    public void setEmail_chk(String email_chk) {
+        this.email_chk = email_chk;
+    }
+
+    /**
+     * @return the userPassChk
+     */
+    public String getUserPassChk() {
+        return userPassChk;
+    }
+
+    /**
+     * @param userPassChk the userPassChk to set
+     */
+    public void setUserPassChk(String userPassChk) {
+        this.userPassChk = userPassChk;
     }
 }

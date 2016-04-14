@@ -10,8 +10,8 @@ import java.util.List;
 import mgn.obj._beans.deptBean;
 
 import obj.db.v1.dbMgrInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 /**
@@ -19,7 +19,7 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class deptObj implements Serializable{
-    public  final Logger logger = (Logger) LoggerFactory.getLogger(deptObj.class);
+    public  final Logger logger = (Logger) Logger.getLogger(deptObj.class);
     deptSql deptSql;
     public deptObj(){
         deptSql = new deptSql();

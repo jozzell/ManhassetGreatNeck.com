@@ -8,8 +8,9 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import mgn.obj._beans.customerBean;
 import obj.db.v1.dbMgrInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 /**
@@ -17,17 +18,17 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class custObj  implements Serializable{
-    public  final Logger logger = (Logger) LoggerFactory.getLogger(custObj.class);
+    public  final Logger logger = (Logger) Logger.getLogger(custObj.class);
      custSql custSql;
     public custObj(){
         custSql = new custSql();
     }
     public  int createUser(customerBean b, dbMgrInterface db) {
-        b.seteMail(b.geteMail().toLowerCase());
+        b.setEMail(b.getEMail().toLowerCase());
         try {
             if (b.getCustId() == 0) {
                 db.updateDatabase(custSql.sqlInsertCust, getObject(b, false));
-                return getCustID(b.geteMail(),db);
+                return getCustID(b.getEMail(),db);
             } else {
                 db.updateDatabase(custSql.sqlUpdateCust, getObject(b, true));
             }
@@ -78,7 +79,7 @@ public class custObj  implements Serializable{
             b.setWkPhone(r.getString(11));          //  + "WK_PHONE , "
             b.setWkExt(r.getString(12));       //     + "WK_EXT ,"
             b.setZip(r.getString(13));  //          + "ZIP , "
-            b.seteMail(r.getString(14));   // + " EMAIL ,"
+            b.setEMail(r.getString(14));   // + " EMAIL ,"
             b.setDbId(r.getInt(15));       //     + "dbId ,	"
             b.setUserName(r.getString(16));  //          + "user_name ,"
             b.setAccessLevel(r.getInt(17));//u            + "user_pass ,	"
@@ -104,7 +105,7 @@ public class custObj  implements Serializable{
             b.getWkPhone() , 
             b.getWkExt() ,
             b.getZip() ,
-             b.geteMail().toLowerCase() ,
+             b.getEMail().toLowerCase() ,
             b.getUserPass() ,	
             b.getAccessLevel() ,   
            

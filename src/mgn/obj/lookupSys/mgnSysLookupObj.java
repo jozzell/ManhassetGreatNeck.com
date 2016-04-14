@@ -9,12 +9,12 @@ package mgn.obj.lookupSys;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import mgn.obj.lookup.mgnLookupBean;
+import mgn.obj._beans.mgnLookupBean;
 import mgn.obj.lookup.mgnLookupObj;
 
 import obj.db.v1.dbMgrInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 /**
@@ -22,7 +22,7 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class mgnSysLookupObj implements Serializable{
-    public  final Logger logger = (Logger) LoggerFactory.getLogger(mgnSysLookupObj.class);
+    public  final Logger logger = (Logger) Logger.getLogger(mgnSysLookupObj.class);
     mgnSysLookupSql mgnSysLookupSql;
     mgnLookupObj mgnLookupObj;
     public mgnSysLookupObj(){
@@ -41,6 +41,9 @@ public class mgnSysLookupObj implements Serializable{
         } finally {
            db.closeCachedRowSet(r);
         }
+    }
+    public  List<mgnLookupBean> getSysLookupListByID(int id,dbMgrInterface db){
+        return getSysLookupList(mgnSysLookupSql.sqlSysLookupByID,new Object[]{id},db);
     }
     public  List<mgnLookupBean> getSysLookupList(int type,dbMgrInterface db){
         return getSysLookupList(mgnSysLookupSql.sqlSysLookupByType,new Object[]{type},db);

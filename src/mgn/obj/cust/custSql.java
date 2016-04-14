@@ -16,15 +16,15 @@ public class custSql implements Serializable{
             " select cust_id ,email_key ,keyStr ,FIRST_NAME , LAST_NAME, ADDR1 , "
             + " ADDR2 , CITY, STATE,HM_PHONE , WK_PHONE , WK_EXT ,ZIP , "
             + " EMAIL ,dbId ,	user_name ,user_pass ,	vendor_id ,access_lvl  ,   SPONSOR_LINK_ID"
-            + " From mgnCUSTOMER ";
+            + " From mgn_CUSTOMER ";
     public  final String  
            
             sqlSelectCustChk =
-            " select max(cust_id) from mgnCUSTOMER where EMAIL = ? ",
+            " select max(cust_id) from mgn_CUSTOMER where EMAIL = ? ",
             sqlSelectByCustID =
             sqlCust +" where cust_id = ?",
             sqlUpdateCust =
-            " update mgnCUSTOMER set "
+            " update mgn_CUSTOMER set "
             + " email_key =?,keyStr =? ,FIRST_NAME  =?, LAST_NAME =?, ADDR1 =? , "
             + " ADDR2  =?, CITY =?, STATE =?,HM_PHONE  =?, WK_PHONE  =?, WK_EXT  =?,ZIP  =?, "
             + " EMAIL  =?,dbId  =?,	user_name  =?,user_pass =? ,	vendor_id =? ,access_lvl =?  ,   SPONSOR_LINK_ID =? "

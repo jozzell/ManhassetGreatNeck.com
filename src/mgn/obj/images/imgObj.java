@@ -7,16 +7,16 @@
 package mgn.obj.images;
 
 
+import jvp.obj.bean.imgBean;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Level;
-import mgn.obj.lookup.mgnLookupBean;
+import mgn.obj._beans.mgnLookupBean;
 import obj.db.v1.dbMgrInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 /**
@@ -24,7 +24,7 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class imgObj implements Serializable{
-    public  final Logger logger = (Logger) LoggerFactory.getLogger(imgObj.class);
+    public  final Logger logger = (Logger) Logger.getLogger(imgObj.class);
     imgSql imgSql;
     
    public imgObj(){
@@ -61,7 +61,7 @@ public class imgObj implements Serializable{
             }
             
         } catch (Exception ex) {
-            logger.error(ex.getMessage());
+            ex.printStackTrace();
         }finally {
             db.closeCachedRowSet(r);
         }
@@ -72,7 +72,7 @@ public class imgObj implements Serializable{
           
            b.getDirName(),
            b.getDirDesc(),
-           b.getDirText(),
+           b.getDirText() == null ? "" :b.getDirText(),
            b.getDirGroup(),
            b.getUserId(),
            b.getSearchKey()
@@ -161,7 +161,10 @@ public class imgObj implements Serializable{
         return selectImageList(imgSql.sqlSelectImagesDefault,db,null);
     }
     public  List<imgBean> selectImageList(int dirId,dbMgrInterface db){
-        return selectImageList(imgSql.sqlSelectImages,db,new Object[]{dirId});
+        return selectImageList(imgSql.sqlSelectImagesV2,db,new Object[]{dirId});
+    }
+    public  List<imgBean> selectImageList_V2(dbMgrInterface db){
+        return selectImageList(imgSql.sqlGrpSelect,db,new Object[]{});
     }
     public  List<imgBean> selectImageList(String sql,dbMgrInterface db,Object[] obj){
         List<imgBean> list = new ArrayList<imgBean>();
@@ -179,7 +182,9 @@ public class imgObj implements Serializable{
                 l.setDirName(r.getString(7));
                 l.setSysDesc(r.getString(8));
                 l.setRootPath(r.getString(9));
-                
+                l.setCnt(r.getInt(10));
+                l.setDirDesc(r.getString(11));
+                l.setLookupID(r.getInt(12));
                 list.add(l);
             }
         } catch (Exception ex) {
