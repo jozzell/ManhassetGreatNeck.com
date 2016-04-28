@@ -6,7 +6,10 @@ package mgn.obj.cust;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import mgn.obj._beans.customerBean;
+import mgn.obj._beans.customerLinkBean;
 import obj.db.v1.dbMgrInterface;
 import org.apache.log4j.Logger;
 //import org.apache.log4j.Logger;
@@ -22,6 +25,17 @@ public class custObj  implements Serializable{
      custSql custSql;
     public custObj(){
         custSql = new custSql();
+    }
+    public void insertIntoLink(customerBean b,customerLinkBean bean, dbMgrInterface db){
+        insertIntoLink(b.getCustId(),b.getCustId(),bean,db);
+    }
+    public void insertIntoLink(int id,int rollup,customerLinkBean bean, dbMgrInterface db){
+        try {
+            db.updateDatabase(custSql.sqlInsertCustLink, new Object[]{id,rollup,bean.getDob(),bean.getType()});
+            //sqlInsertCustLink
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        }
     }
     public  int createUser(customerBean b, dbMgrInterface db) {
         b.setEMail(b.getEMail().toLowerCase());
@@ -49,6 +63,21 @@ public class custObj  implements Serializable{
             logger.error(ex.toString());
         }
         return i;
+    }
+     public  List<customerBean> getcustomerList_link(int id,dbMgrInterface db){
+        List<customerBean> b = new ArrayList<customerBean>();
+        CachedRowSet r;
+         try {
+            r = db.getCachedRowSet(custSql.sqlSelectByCustID, new Object[]{id});
+            while(r.next()){
+                customerBean x = getcustomerBean(r);
+                x.setSlot01(r.getString(21));
+                b.add(x);
+            }
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        }
+        return b;
     }
     public  customerBean getcustomerBean(int id,dbMgrInterface db){
         customerBean b = null;
@@ -97,14 +126,14 @@ public class custObj  implements Serializable{
            
             b.getFirstName() , 
             b.getLastName(), 
-            b.getAddr1() , 
-            b.getAddr2() , 
-            b.getCity(), 
-            b.getState(),
-            b.getHmPhone() , 
-            b.getWkPhone() , 
-            b.getWkExt() ,
-            b.getZip() ,
+            b.getAddr1() == null ? "":b.getAddr1() , 
+            b.getAddr2() == null ? "":b.getAddr2() , 
+            b.getCity() == null ? "":b.getCity(), 
+            b.getState() == null ? "":b.getState(),
+            b.getHmPhone() == null ? "":b.getHmPhone() , 
+            b.getWkPhone() == null ? "":b.getWkPhone() , 
+            b.getWkExt() == null ? "":b.getWkExt() ,
+            b.getZip() == null ? "":b.getZip() ,
              b.getEMail().toLowerCase() ,
             b.getUserPass() ,	
             b.getAccessLevel() ,   

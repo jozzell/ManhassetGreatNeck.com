@@ -18,7 +18,13 @@ public class mgnLookupBean extends _resetBean  implements Serializable{
     private int lookupId,lookupRollupId,lookupType,lookupFlag,cnt;
     private String lookupDesc,searchKey;
     private String subjectText,subjectBody;
-
+    public mgnLookupBean(){
+        
+    }
+    public mgnLookupBean(int id,String val){
+        this.lookupDesc = val;
+        this.lookupId = id;
+    }
     /**
      * @return the lookupId
      */

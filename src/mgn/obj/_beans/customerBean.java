@@ -15,7 +15,7 @@ import mgn.obj.mgnVar;
  */
 @ManagedBean(name = "customerBean")
 public class customerBean extends mgnVar implements Serializable{
-
+    private String slot01,slot02,slot03;
     private int custId;
     private Date dob;
     private int rollup_id;
@@ -390,5 +390,47 @@ public class customerBean extends mgnVar implements Serializable{
      */
     public void setUserPassChk(String userPassChk) {
         this.userPassChk = userPassChk;
+    }
+
+    /**
+     * @return the slot01
+     */
+    public String getSlot01() {
+        return slot01;
+    }
+
+    /**
+     * @param slot01 the slot01 to set
+     */
+    public void setSlot01(String slot01) {
+        this.slot01 = slot01;
+    }
+
+    /**
+     * @return the slot02
+     */
+    public String getSlot02() {
+        return slot02;
+    }
+
+    /**
+     * @param slot02 the slot02 to set
+     */
+    public void setSlot02(String slot02) {
+        this.slot02 = slot02;
+    }
+
+    /**
+     * @return the slot03
+     */
+    public String getSlot03() {
+        return slot03;
+    }
+
+    /**
+     * @param slot03 the slot03 to set
+     */
+    public void setSlot03(String slot03) {
+        this.slot03 = slot03;
     }
 }
