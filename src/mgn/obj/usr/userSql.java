@@ -25,6 +25,7 @@ public class userSql implements Serializable{
             ;
     public  final String
             sqlttt= "",
+            
             mgn_access = "insert into mgn_access (mgn_id,mgn_ts) values (?,?)",
             select = sqlV2+" order by c.LAST_NAME,c.FIRST_NAME",
             select_byALL    = sqlV2+" order by c.LAST_NAME,c.FIRST_NAME",

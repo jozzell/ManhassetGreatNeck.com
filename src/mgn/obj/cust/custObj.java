@@ -6,7 +6,9 @@ package mgn.obj.cust;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import mgn.obj._beans.customerBean;
 import mgn.obj._beans.customerLinkBean;
@@ -21,6 +23,7 @@ import sun.jdbc.rowset.CachedRowSet;
  * @author lmeans
  */
 public class custObj  implements Serializable{
+    private final String NonEMail="NonEMail";
     public  final Logger logger = (Logger) Logger.getLogger(custObj.class);
      custSql custSql;
     public custObj(){
@@ -31,6 +34,7 @@ public class custObj  implements Serializable{
     }
     public void insertIntoLink(int id,int rollup,customerLinkBean bean, dbMgrInterface db){
         try {
+            db.updateDatabase(custSql.sqlDeleteLink,  new Object[]{id,rollup});
             db.updateDatabase(custSql.sqlInsertCustLink, new Object[]{id,rollup,bean.getDob(),bean.getType()});
             //sqlInsertCustLink
         } catch (Exception ex) {
@@ -38,7 +42,8 @@ public class custObj  implements Serializable{
         }
     }
     public  int createUser(customerBean b, dbMgrInterface db) {
-        b.setEMail(b.getEMail().toLowerCase());
+        b.setEMail(this.genEMail(b.getEMail()));
+        //b.setEMail(b.getEMail().toLowerCase());
         try {
             if (b.getCustId() == 0) {
                 db.updateDatabase(custSql.sqlInsertCust, getObject(b, false));
@@ -68,7 +73,7 @@ public class custObj  implements Serializable{
         List<customerBean> b = new ArrayList<customerBean>();
         CachedRowSet r;
          try {
-            r = db.getCachedRowSet(custSql.sqlSelectByCustID, new Object[]{id});
+            r = db.getCachedRowSet(custSql.sqlCustLink, new Object[]{id});
             while(r.next()){
                 customerBean x = getcustomerBean(r);
                 x.setSlot01(r.getString(21));
@@ -84,6 +89,20 @@ public class custObj  implements Serializable{
         CachedRowSet r;
          try {
             r = db.getCachedRowSet(custSql.sqlSelectByCustID, new Object[]{id});
+            while(r.next()){
+                b = getcustomerBean(r);
+            }
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        }
+        return b;
+    }
+    public  customerBean getcustomerBeanEMail(String email,dbMgrInterface db){
+        if (email == null) return null;
+        customerBean b = null;
+        CachedRowSet r;
+         try {
+            r = db.getCachedRowSet(custSql.sqlCust_Email, new Object[]{email.toLowerCase()});
             while(r.next()){
                 b = getcustomerBean(r);
             }
@@ -111,11 +130,13 @@ public class custObj  implements Serializable{
             b.setEMail(r.getString(14));   // + " EMAIL ,"
             b.setDbId(r.getInt(15));       //     + "dbId ,	"
             b.setUserName(r.getString(16));  //          + "user_name ,"
-            b.setAccessLevel(r.getInt(17));//u            + "user_pass ,	"
+            b.setUserPass(r.getString(17));//u            + "user_pass ,	"
             b.setVendorId(r.getInt(18));  //          + "vendor_id ,"
             b.setAccessLevel(r.getInt(19));    //        + "access_lvl  ,   "
             b.setSponsorLinkId(r.getInt(20)); //           + "SPONSOR_LINK_ID
-           
+            if (b.getEMail() != null && b.getEMail().contains(NonEMail.toLowerCase())){
+                b.setEMail(null);
+            }
         } catch (SQLException ex) {
            logger.error(ex.toString());
         }
@@ -134,11 +155,22 @@ public class custObj  implements Serializable{
             b.getWkPhone() == null ? "":b.getWkPhone() , 
             b.getWkExt() == null ? "":b.getWkExt() ,
             b.getZip() == null ? "":b.getZip() ,
-             b.getEMail().toLowerCase() ,
-            b.getUserPass() ,	
+            genEMail(b.getEMail()),
+            b.getUserPass() == null ? genPassword():b.getUserPass() ,	
             b.getAccessLevel() ,   
            
             update ? b.getCustId() : null
         };
+    }
+    private String genEMail(String email){
+        if (email != null && email.trim().length() > 0){
+            return email.toLowerCase().trim();
+        } else {
+            return NonEMail+"@"+new SimpleDateFormat("MMddyyHHSSS").format(Calendar.getInstance().getTime());
+        }
+    }
+    private String genPassword(){
+        
+        return "welcome"+new SimpleDateFormat("MMddyyHHSSS").format(Calendar.getInstance().getTime());
     }
 }

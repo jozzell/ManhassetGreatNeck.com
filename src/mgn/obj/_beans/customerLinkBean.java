@@ -18,6 +18,7 @@ import javax.faces.bean.ManagedBean;
 public class customerLinkBean  implements Serializable{
     private Date dob;
     private int type;
+    
 
     /**
      * @return the dob
@@ -47,4 +48,6 @@ public class customerLinkBean  implements Serializable{
     public void setType(int type) {
         this.type = type;
     }
+
+    
 }
