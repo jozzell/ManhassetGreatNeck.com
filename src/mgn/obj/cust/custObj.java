@@ -97,12 +97,12 @@ public class custObj  implements Serializable{
         }
         return b;
     }
-    public  customerBean getcustomerBeanEMail(String email,dbMgrInterface db){
+    public  customerBean getcustomerBeanEMail(String email,int id,dbMgrInterface db){
         if (email == null) return null;
         customerBean b = null;
         CachedRowSet r;
          try {
-            r = db.getCachedRowSet(custSql.sqlCust_Email, new Object[]{email.toLowerCase()});
+            r = db.getCachedRowSet(custSql.sqlCust_Email, new Object[]{email.toLowerCase(),id});
             while(r.next()){
                 b = getcustomerBean(r);
             }
@@ -158,7 +158,7 @@ public class custObj  implements Serializable{
             genEMail(b.getEMail()),
             b.getUserPass() == null ? genPassword():b.getUserPass() ,	
             b.getAccessLevel() ,   
-           
+            b.getSponsorLinkId(),
             update ? b.getCustId() : null
         };
     }

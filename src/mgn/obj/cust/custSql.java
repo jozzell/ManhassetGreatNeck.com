@@ -21,8 +21,8 @@ public class custSql implements Serializable{
           ;
   
     public  final String  
-            sql = "xxx",
-            sqlCust_Email = sqlCust+ " where EMAIL = ?",
+            sql2 = "xxx",
+            sqlCust_Email = sqlCust+ " where EMAIL = ? and cust_id != ?",
             sqlCustLink = 
                  custSql 
                  + ",case l.cust_type when -101 then 'Parent'  when -102 then date_format(dob,'%b %d, %Y')    else 'Coach' end as dob" 
