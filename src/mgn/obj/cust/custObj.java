@@ -69,6 +69,20 @@ public class custObj  implements Serializable{
         }
         return i;
     }
+    public  int getCustID(String email,int id,dbMgrInterface db){
+        int i = -1;
+        CachedRowSet r;
+        try {
+            r = db.getCachedRowSet(custSql.sqlSelectCustChk_withEMail_ID, new Object[]{email,id});
+            while(r.next()){
+                i = r.getInt(1);
+            }
+        } catch (Exception ex) {
+            logger.error(ex.toString());
+        }
+        return i;
+    }
+    
      public  List<customerBean> getcustomerList_link(int id,dbMgrInterface db){
         List<customerBean> b = new ArrayList<customerBean>();
         CachedRowSet r;

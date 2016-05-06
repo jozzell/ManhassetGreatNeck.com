@@ -31,6 +31,8 @@ public class custSql implements Serializable{
             sqlInsertCustLink = "INSERT INTO mgn_customer_link (cust_id,cust_rollup_id,dob,cust_type) values (?,?,?,?)",
             sqlSelectCustChk =
             " select max(cust_id) from mgn_CUSTOMER where EMAIL = ? ",
+             sqlSelectCustChk_withEMail_ID =
+            " select max(cust_id) from mgn_CUSTOMER where EMAIL = ? and cust_id = ? ",
             sqlSelectByCustID =
             sqlCust +" where cust_id = ?",
             sqlUpdateCust =
