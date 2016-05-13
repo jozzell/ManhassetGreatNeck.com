@@ -19,7 +19,8 @@ public class customerRegBean extends customerLinkBean implements Serializable{
     private int regLookupId;
     private int regPaidId,regCompleted;
     private String regNote,pdf,lookupDesc;
-    
+    private int shirtSize,warmupSuiteSize,shortSide;
+    private String dobStr,fullName;
 
     /**
      * @return the regId
@@ -133,5 +134,75 @@ public class customerRegBean extends customerLinkBean implements Serializable{
      */
     public void setLookupDesc(String lookupDesc) {
         this.lookupDesc = lookupDesc;
+    }
+
+    /**
+     * @return the shirtSize
+     */
+    public int getShirtSize() {
+        return shirtSize;
+    }
+
+    /**
+     * @param shirtSize the shirtSize to set
+     */
+    public void setShirtSize(int shirtSize) {
+        this.shirtSize = shirtSize;
+    }
+
+    /**
+     * @return the warmupSuiteSize
+     */
+    public int getWarmupSuiteSize() {
+        return warmupSuiteSize;
+    }
+
+    /**
+     * @param warmupSuiteSize the warmupSuiteSize to set
+     */
+    public void setWarmupSuiteSize(int warmupSuiteSize) {
+        this.warmupSuiteSize = warmupSuiteSize;
+    }
+
+    /**
+     * @return the shortSide
+     */
+    public int getShortSide() {
+        return shortSide;
+    }
+
+    /**
+     * @param shortSide the shortSide to set
+     */
+    public void setShortSide(int shortSide) {
+        this.shortSide = shortSide;
+    }
+
+    /**
+     * @return the dobStr
+     */
+    public String getDobStr() {
+        return dobStr;
+    }
+
+    /**
+     * @param dobStr the dobStr to set
+     */
+    public void setDobStr(String dobStr) {
+        this.dobStr = dobStr;
+    }
+
+    /**
+     * @return the fullName
+     */
+    public String getFullName() {
+        return fullName;
+    }
+
+    /**
+     * @param fullName the fullName to set
+     */
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

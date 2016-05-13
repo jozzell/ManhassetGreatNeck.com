@@ -17,7 +17,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean(name = "customerLinkBean")
 public class customerLinkBean  implements Serializable{
     private Date dob;
-    private int type;
+    private int type,cust_id,cust_rollup_id;
     
 
     /**
@@ -47,6 +47,34 @@ public class customerLinkBean  implements Serializable{
      */
     public void setType(int type) {
         this.type = type;
+    }
+
+    /**
+     * @return the cust_id
+     */
+    public int getCust_id() {
+        return cust_id;
+    }
+
+    /**
+     * @param cust_id the cust_id to set
+     */
+    public void setCust_id(int cust_id) {
+        this.cust_id = cust_id;
+    }
+
+    /**
+     * @return the cust_rollup_id
+     */
+    public int getCust_rollup_id() {
+        return cust_rollup_id;
+    }
+
+    /**
+     * @param cust_rollup_id the cust_rollup_id to set
+     */
+    public void setCust_rollup_id(int cust_rollup_id) {
+        this.cust_rollup_id = cust_rollup_id;
     }
 
     

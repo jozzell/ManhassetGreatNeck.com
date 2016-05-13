@@ -29,18 +29,7 @@ public class custObj  implements Serializable{
     public custObj(){
         custSql = new custSql();
     }
-    public void insertIntoLink(customerBean b,customerLinkBean bean, dbMgrInterface db){
-        insertIntoLink(b.getCustId(),b.getCustId(),bean,db);
-    }
-    public void insertIntoLink(int id,int rollup,customerLinkBean bean, dbMgrInterface db){
-        try {
-            db.updateDatabase(custSql.sqlDeleteLink,  new Object[]{id,rollup});
-            db.updateDatabase(custSql.sqlInsertCustLink, new Object[]{id,rollup,bean.getDob(),bean.getType()});
-            //sqlInsertCustLink
-        } catch (Exception ex) {
-            logger.error(ex.toString());
-        }
-    }
+   
     public  int createUser(customerBean b, dbMgrInterface db) {
         b.setEMail(this.genEMail(b.getEMail()));
         //b.setEMail(b.getEMail().toLowerCase());
@@ -172,7 +161,7 @@ public class custObj  implements Serializable{
             genEMail(b.getEMail()),
             b.getUserPass() == null ? genPassword():b.getUserPass() ,	
             b.getAccessLevel() ,   
-            b.getSponsorLinkId(),
+           
             update ? b.getCustId() : null
         };
     }
