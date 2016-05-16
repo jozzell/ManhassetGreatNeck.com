@@ -22,6 +22,7 @@ public class mgnLookupSql implements Serializable{
             " values (?,?,?,?,?,?,?)",
        sqlLookupkey = "select max(lookup_id) from mgn_lookup where searchKey = ?",
         sqlLookupByTypeRollup = sql + "where l.lookup_type = ? and l.lookup_rollup_id = ?  order by l.lookup_desc",
-       sqlLookupByType = sql + "where l.lookup_type = ?  order by l.lookup_desc";
+       sqlLookupByType = sql + "where l.lookup_type = ?  order by l.lookup_desc",
+            sqlLookupById = sql + "where l.lookup_id = ?";
     
 }

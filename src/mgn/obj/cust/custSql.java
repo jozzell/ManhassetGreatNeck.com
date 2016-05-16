@@ -21,7 +21,7 @@ public class custSql implements Serializable{
           ;
   
     public  final String  
-            sql66 = "xxx",
+            sql777 = "xxx",
             sqlCust_Email = sqlCust+ " where EMAIL = ? and cust_id != ?",
             sqlCustLink = 
                  custSql 
@@ -30,7 +30,7 @@ public class custSql implements Serializable{
             sqlSelectCustChk =
             " select max(cust_id) from mgn_CUSTOMER where EMAIL = ? ",
              sqlSelectCustChk_withEMail_ID =
-            " select max(cust_id) from mgn_CUSTOMER where EMAIL = ? and cust_id = ? ",
+            " select cust_id from mgn_CUSTOMER where EMAIL = ? and cust_id = ? ",
             sqlSelectByCustID =
             sqlCust +" where cust_id = ?",
             sqlUpdateCust =

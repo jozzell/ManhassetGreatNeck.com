@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import mgn.obj._beans.customerBean;
-import mgn.obj._beans.customerLinkBean;
 import obj.db.v1.dbMgrInterface;
 import org.apache.log4j.Logger;
 //import org.apache.log4j.Logger;

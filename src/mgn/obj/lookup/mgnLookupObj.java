@@ -61,6 +61,19 @@ public class mgnLookupObj implements Serializable{
         };
     }
     //sqlLookupByTypeRollup
+    //sqlLookupById
+    public  mgnLookupBean getLookupBean(int type,dbMgrInterface db){
+        List<mgnLookupBean> l = getLookupList(new Object[]{type},mgnLookupSql.sqlLookupById,db);
+        if (l.size() == 1){
+            return l.get(0);
+        } else {
+            return null;
+        }
+        
+    }
+    
+    
+    
     public  List<mgnLookupBean> getLookupList(int type,dbMgrInterface db){
         return getLookupList(new Object[]{type},mgnLookupSql.sqlLookupByType,db);
     }

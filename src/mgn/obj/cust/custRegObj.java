@@ -34,7 +34,7 @@ public class custRegObj   implements Serializable{
                 list.add(x);
             }
         } catch (Exception ex) {
-            logger.error(ex.toString());
+          logger.error("Exception",ex);
         } finally {
              db.closeCachedRowSet(r);
          }
@@ -42,6 +42,25 @@ public class custRegObj   implements Serializable{
         
         return list;
     }
+    public customerRegBean getCustomerRegBeanList_byRegId(int id,dbMgrInterface db){
+       customerRegBean b=null;
+        CachedRowSet r = null;
+         try {
+            r = db.getCachedRowSet(custRegSql.sqlCustRegList_regId, new Object[]{id});
+            while(r.next()){
+                b = getcustomerRegBean(r);
+               
+            }
+        } catch (Exception ex) {
+            logger.error("Exception",ex);
+        } finally {
+             db.closeCachedRowSet(r);
+         }
+        
+        
+        return b;
+    }
+    
      public void insertIntoLink(customerBean b,customerLinkBean bean, dbMgrInterface db){
         insertIntoLink(b.getCustId(),b.getCustId(),bean,db);
     }
@@ -51,22 +70,31 @@ public class custRegObj   implements Serializable{
             db.updateDatabase(custRegSql.sqlInsertCustLink, new Object[]{id,rollup,bean.getDob(),bean.getType()});
             //sqlInsertCustLink
         } catch (Exception ex) {
-            logger.error(ex.toString());
+            logger.error("Exception",ex);
+        }
+    }
+    
+    public void updateRegPdf(int regId,String pdf,dbMgrInterface db){
+        try {
+            db.updateDatabase(custRegSql.sqlUpdatePdf,  new Object[]{pdf,regId});
+        } catch (Exception ex) {
+             logger.error("Exception",ex);
         }
     }
     public void customerRegUpdate(customerRegBean bean, dbMgrInterface db){
         try {
             if (bean.getRegId() == 0){
-                Object[] obj = getCustRegObj(bean);
+               
                 db.updateDatabase(custRegSql.sqlInsertCustReg,  getCustRegObj(bean));
             } else {
-                
+                //
+                db.updateDatabase(custRegSql.sqlCustRegUpdate,  getCustRegObj(bean));
             }
             
             
             //sqlInsertCustLink
         } catch (Exception ex) {
-            logger.error(ex.toString());
+            logger.error("Exception",ex);
         }
     }
     public customerLinkBean getCustomerLinkBean(int id,dbMgrInterface db){
@@ -78,7 +106,7 @@ public class custRegObj   implements Serializable{
                 b = getCustomerLinkBean(r);
             }
         } catch (Exception ex) {
-            logger.error(ex.toString());
+            logger.error("Exception",ex);
         } finally {
              db.closeCachedRowSet(r);
          }
@@ -92,23 +120,28 @@ public class custRegObj   implements Serializable{
             b.setDob(r.getDate(3));
             b.setType(r.getInt(4));
             if (b.getDob() == null) b.setDob(Calendar.getInstance().getTime());
+            b.setFullname(r.getString(5));
+            b.setDobStr(r.getString(6));
         } catch (SQLException ex) {
-            logger.error(ex.toString());
+            logger.error("Exception",ex);
         }
         return b;
     }
     private Object[] getCustRegObj(customerRegBean b){
         return new Object[]{
-         b.getCust_id(),
+         b.getRegCustId(),
          b.getRegLookupId(),
          b.getRegPaidId(),
-         
          b.getRegNote() == null ? "":b.getRegNote(),
          b.getPdf() == null ? "": b.getPdf(),
          b.getRegCompleted(),
          b.getShirtSize(),
          b.getWarmupSuiteSize(),
-         b.getShortSide()
+         b.getShortSide(),
+         b.getSchool() == null ? "": b.getSchool(),
+         b.getContact() == null ? "": b.getContact(),
+         
+         b.getRegId() == 0 ? null: b.getRegId()
             };
     }
     private customerRegBean getcustomerRegBean(CachedRowSet r){
@@ -127,10 +160,19 @@ public class custRegObj   implements Serializable{
             b.setShirtSize(r.getInt(11));
             b.setWarmupSuiteSize(r.getInt(12));
             b.setShortSide(r.getInt(13));
-            b.setFullName(r.getString(14));
+            b.setFullname(r.getString(14));
             b.setDobStr(r.getString(15));
+            b.setShirtSizeStr(r.getString(16));
+            b.setShortSideStr(r.getString(17));
+            b.setWarmupSuiteSizeStr(r.getString(18));
+            b.setSchool(r.getString(19));
+            b.setContact((String)r.getObject(20));
+            b.setSubjectBody((String)r.getObject(21));
+            b.setFeeDesc((String)r.getObject(22));
+                    
+            
         } catch (SQLException ex) {
-            logger.error(ex.toString());
+            logger.error("Exception",ex);
         }
         
         return b;

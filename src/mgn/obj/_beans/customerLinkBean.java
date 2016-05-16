@@ -18,6 +18,8 @@ import javax.faces.bean.ManagedBean;
 public class customerLinkBean  implements Serializable{
     private Date dob;
     private int type,cust_id,cust_rollup_id;
+    private String fullname;
+    private String dobStr;
     
 
     /**
@@ -75,6 +77,34 @@ public class customerLinkBean  implements Serializable{
      */
     public void setCust_rollup_id(int cust_rollup_id) {
         this.cust_rollup_id = cust_rollup_id;
+    }
+
+    /**
+     * @return the fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
+
+    /**
+     * @param fullname the fullname to set
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    /**
+     * @return the dobStr
+     */
+    public String getDobStr() {
+        return dobStr;
+    }
+
+    /**
+     * @param dobStr the dobStr to set
+     */
+    public void setDobStr(String dobStr) {
+        this.dobStr = dobStr;
     }
 
     

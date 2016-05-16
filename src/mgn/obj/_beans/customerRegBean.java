@@ -18,9 +18,10 @@ public class customerRegBean extends customerLinkBean implements Serializable{
     private int regCustId;
     private int regLookupId;
     private int regPaidId,regCompleted;
-    private String regNote,pdf,lookupDesc;
+    private String regNote="",pdf,lookupDesc;
     private int shirtSize,warmupSuiteSize,shortSide;
-    private String dobStr,fullName;
+    private String shirtSizeStr,warmupSuiteSizeStr,shortSideStr;
+    private String dobStr,fullname,school,health,contact,subjectBody,feeDesc;
 
     /**
      * @return the regId
@@ -181,6 +182,7 @@ public class customerRegBean extends customerLinkBean implements Serializable{
     /**
      * @return the dobStr
      */
+    @Override
     public String getDobStr() {
         return dobStr;
     }
@@ -188,6 +190,7 @@ public class customerRegBean extends customerLinkBean implements Serializable{
     /**
      * @param dobStr the dobStr to set
      */
+    @Override
     public void setDobStr(String dobStr) {
         this.dobStr = dobStr;
     }
@@ -195,14 +198,127 @@ public class customerRegBean extends customerLinkBean implements Serializable{
     /**
      * @return the fullName
      */
-    public String getFullName() {
-        return fullName;
+@Override
+    public String getFullname() {
+        return fullname;
+    }
+
+   
+    @Override
+    public void setFullname(String fullName) {
+        
+        this.fullname = fullName;
     }
 
     /**
-     * @param fullName the fullName to set
+     * @return the shirtSizeStr
      */
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getShirtSizeStr() {
+        return shirtSizeStr;
+    }
+
+    /**
+     * @param shirtSizeStr the shirtSizeStr to set
+     */
+    public void setShirtSizeStr(String shirtSizeStr) {
+        this.shirtSizeStr = shirtSizeStr;
+    }
+
+    /**
+     * @return the warmupSuiteSizeStr
+     */
+    public String getWarmupSuiteSizeStr() {
+        return warmupSuiteSizeStr;
+    }
+
+    /**
+     * @param warmupSuiteSizeStr the warmupSuiteSizeStr to set
+     */
+    public void setWarmupSuiteSizeStr(String warmupSuiteSizeStr) {
+        this.warmupSuiteSizeStr = warmupSuiteSizeStr;
+    }
+
+    /**
+     * @return the shortSideStr
+     */
+    public String getShortSideStr() {
+        return shortSideStr;
+    }
+
+    /**
+     * @param shortSideStr the shortSideStr to set
+     */
+    public void setShortSideStr(String shortSideStr) {
+        this.shortSideStr = shortSideStr;
+    }
+
+    /**
+     * @return the school
+     */
+    public String getSchool() {
+        return school;
+    }
+
+    /**
+     * @param school the school to set
+     */
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    /**
+     * @return the health
+     */
+    public String getHealth() {
+        return health;
+    }
+
+    /**
+     * @param health the health to set
+     */
+    public void setHealth(String health) {
+        this.health = health;
+    }
+
+    /**
+     * @return the contact
+     */
+    public String getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    /**
+     * @return the subjectBody
+     */
+    public String getSubjectBody() {
+        return subjectBody;
+    }
+
+    /**
+     * @param subjectBody the subjectBody to set
+     */
+    public void setSubjectBody(String subjectBody) {
+        this.subjectBody = subjectBody;
+    }
+
+    /**
+     * @return the feeDesc
+     */
+    public String getFeeDesc() {
+        return feeDesc;
+    }
+
+    /**
+     * @param feeDesc the feeDesc to set
+     */
+    public void setFeeDesc(String feeDesc) {
+        this.feeDesc = feeDesc;
     }
 }
